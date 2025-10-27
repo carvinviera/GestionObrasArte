@@ -36,26 +36,26 @@ namespace GestionObrasArte.API.Controllers
         }
 
 
-        // GET: api/artistas
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Artista>>> GetArtistas([FromQuery] string? nombre)
-        {
-            if (string.IsNullOrWhiteSpace(nombre))
-            {
-                return await _context.Artistas.ToListAsync();
-            }
+        //// GET: api/artistas
+        //[HttpGet("artistas")]
+        //public async Task<ActionResult<IEnumerable<Artista>>> GetArtistas([FromQuery] string? nombre)
+        //{
+        //    if (string.IsNullOrWhiteSpace(nombre))
+        //    {
+        //        return await _context.Artistas.ToListAsync();
+        //    }
 
-            string filtro = nombre.ToLower();
+        //    string filtro = nombre.ToLower();
 
-            return await _context.Artistas
-                .Where(a =>
-                    a.NombreArtista.ToLower().Contains(filtro) ||
-                    a.ApellidosArtista.ToLower().Contains(filtro))
-                .ToListAsync();
+        //    return await _context.Artistas
+        //        .Where(a =>
+        //            a.NombreArtista.ToLower().Contains(filtro) ||
+        //            a.ApellidosArtista.ToLower().Contains(filtro))
+        //        .ToListAsync();
 
 
 
-        }
+        //}
 
         // POST: api/pinturas
         [HttpPost]

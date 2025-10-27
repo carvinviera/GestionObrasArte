@@ -9,4 +9,12 @@ public partial class PinturaDetailPage : ContentPage
         InitializeComponent();
         BindingContext = viewModel;
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        if (BindingContext is PinturaDetailViewModel vm)
+            await vm.InitializeAsync();
+    }
+
 }

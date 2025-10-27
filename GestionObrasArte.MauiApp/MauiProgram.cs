@@ -3,6 +3,7 @@ using GestionObrasArte.MauiApp.ViewModels;
 using GestionObrasArte.MauiApp.Views;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Hosting;
+using System.Globalization;
 
 namespace GestionObrasArte.MauiApp
 {
@@ -10,6 +11,11 @@ namespace GestionObrasArte.MauiApp
     {
         public static Microsoft.Maui.Hosting.MauiApp CreateMauiApp()
         {
+
+            var culture = new CultureInfo("es-ES");
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
             var builder = Microsoft.Maui.Hosting.MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()

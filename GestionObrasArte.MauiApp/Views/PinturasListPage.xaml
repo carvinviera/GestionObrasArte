@@ -32,22 +32,26 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Pintura">
                     <Frame Padding="10" Margin="10" CornerRadius="5" BorderColor="LightGray">
-                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto, Auto">
                             <Label Grid.Row="0" Grid.Column="0" Text="{Binding TituloPintura}" FontAttributes="Bold" FontSize="18" />
                             <Label Grid.Row="1" Grid.Column="0" Text="{Binding Artista.NombreArtista, StringFormat='Artista: {0}'}" FontSize="14" />
-                            <Label Grid.Row="2" Grid.Column="0" Text="{Binding Precio, StringFormat='Precio: {0:C}'}" FontSize="14" />
+                            <Label Grid.Row="2" Grid.Column="0" Text="{Binding TipoPintura.TítuloTipoPintura, StringFormat='Tipo de Pintura: {0}'}" FontSize="14" />
+                            <Label Grid.Row="3" Grid.Column="0" Text="{Binding Precio, StringFormat='Precio: {0:C}'}" FontSize="14" />
 
-                            <VerticalStackLayout Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalOptions="Center" Spacing="5">
-                                <Button Text="Editar" 
-                                        FontSize="12"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PinturasListViewModel}}, Path=GoToDetailCommand}"
-                                        CommandParameter="{Binding .}" />
-                                <Button Text="Eliminar"
-                                        FontSize="12"
-                                        BackgroundColor="Red"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PinturasListViewModel}}, Path=DeletePinturaCommand}"
-                                        CommandParameter="{Binding IdPintura}" />
-                            </VerticalStackLayout>
+                            <HorizontalStackLayout Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" 
+                                           VerticalOptions="Center"
+                                           Spacing="5">
+                                                    <Button Text="Editar" 
+                                FontSize="12"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PinturasListViewModel}}, Path=GoToDetailCommand}"
+                                CommandParameter="{Binding .}" />
+                                                <Button Text="Eliminar"
+                                FontSize="12"
+                                BackgroundColor="Red"
+                                TextColor="White"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PinturasListViewModel}}, Path=DeletePinturaCommand}"
+                                CommandParameter="{Binding IdPintura}" />
+                            </HorizontalStackLayout>
                         </Grid>
                     </Frame>
                 </DataTemplate>

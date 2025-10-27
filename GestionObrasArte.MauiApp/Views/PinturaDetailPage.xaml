@@ -9,10 +9,10 @@
     <VerticalStackLayout Spacing="10" Padding="20">
 
         <Label Text="Título de la Pintura" FontAttributes="Bold" />
-        <Entry Text="{Binding Pintura.TituloPintura}" Placeholder="Ej: La persistencia de la memoria" />
+        <Entry Text="{Binding Titulo, Mode=TwoWay}" Placeholder="Ej: La persistencia del amor" />
 
         <Label Text="Precio" FontAttributes="Bold" />
-        <Entry Text="{Binding Pintura.Precio}" Keyboard="Numeric" Placeholder="Ej: 15000.00" />
+        <Entry Text="{Binding PrecioTexto, Mode=TwoWay}" Keyboard="Numeric" Placeholder="Ej: 15000.00" />
 
         <Label Text="Artista" FontAttributes="Bold" />
         <Picker 
