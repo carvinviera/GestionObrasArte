@@ -1,4 +1,5 @@
 using GestionObrasArte.BlazorApp.Components;
+using GestionObrasArte.BlazorApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +13,9 @@ builder.Services.AddScoped(sp => new HttpClient
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents(); // Asegura interactividad Server
 
-var app = builder.Build();
+builder.Services.AddScoped<ArtistasService>();
 
-// ... (resto del archivo sin cambios) ...
+var app = builder.Build();
 
 app.UseStaticFiles();
 app.UseAntiforgery();

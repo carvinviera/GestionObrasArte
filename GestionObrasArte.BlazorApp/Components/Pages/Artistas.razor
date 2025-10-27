@@ -1,12 +1,11 @@
 ﻿@page "/artistas"
+@using GestionObrasArte.BlazorApp.Services
 @using GestionObrasArte.Shared.Models
 @using System.Net.Http.Json
-@inject HttpClient Http
+@inject ArtistasService ArtistasService
 @rendermode InteractiveServer
 
 <PageTitle>Gestión de Artistas</PageTitle>
-
-<h1>Gestión de Artistas</h1>
 
 <h3>@(_artistaSeleccionado.IdArtista == 0 ? "Nuevo Artista" : "Editar Artista")</h3>
 <EditForm Model="@_artistaSeleccionado" OnValidSubmit="GuardarArtista">
@@ -85,39 +84,37 @@ else
 
     private async Task CargarArtistas(string? filtro = null)
     {
-        var url = "artistas";
-        if (!string.IsNullOrWhiteSpace(filtro))
-        {
-            url += $"?nombre={filtro}";
-        }
-        _artistas = await Http.GetFromJsonAsync<List<Artista>>(url);
+        _artistas = await ArtistasService.GetArtistasAsync(filtro);
     }
 
     private async void AplicarFiltro(ChangeEventArgs e)
     {
-        _filtroNombre = e.Value?.ToString() ?? string.Empty;
+        _filtroNombre = e.Value?.ToString()?.ToLowerInvariant() ?? string.Empty;
         await CargarArtistas(_filtroNombre);
-        StateHasChanged(); // Forzar actualización de UI
+        StateHasChanged();
     }
 
     private async Task GuardarArtista()
     {
+        bool success;
         if (_artistaSeleccionado.IdArtista == 0) // Es nuevo
         {
-            await Http.PostAsJsonAsync("artistas", _artistaSeleccionado);
+            success = await ArtistasService.AddArtistaAsync(_artistaSeleccionado);
         }
         else // Es edición
         {
-            await Http.PutAsJsonAsync($"artistas/{_artistaSeleccionado.IdArtista}", _artistaSeleccionado);
+            success = await ArtistasService.UpdateArtistaAsync(_artistaSeleccionado);
         }
 
-        LimpiarFormulario();
-        await CargarArtistas();
+        if (success)
+        {
+            LimpiarFormulario();
+            await CargarArtistas();
+        }
     }
 
     private void SeleccionarParaEditar(Artista artista)
     {
-        // Clonar para evitar modificar la tabla directamente
         _artistaSeleccionado = new Artista
             {
                 IdArtista = artista.IdArtista,
@@ -129,8 +126,10 @@ else
 
     private async Task EliminarArtista(int id)
     {
-        await Http.DeleteAsync($"artistas/{id}");
-        await CargarArtistas();
+        if (await ArtistasService.DeleteArtistaAsync(id))
+        {
+            await CargarArtistas();
+        }
     }
 
     private void LimpiarFormulario()

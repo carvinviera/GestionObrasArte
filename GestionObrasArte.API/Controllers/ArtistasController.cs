@@ -24,9 +24,14 @@ namespace GestionObrasArte.API.Controllers
             {
                 return await _context.Artistas.ToListAsync();
             }
+
+            string filtro = nombre.ToLower();
+
             return await _context.Artistas
-                                 .Where(a => a.NombreArtista.Contains(nombre) || a.ApellidosArtista.Contains(nombre))
-                                 .ToListAsync();
+                .Where(a =>
+                    a.NombreArtista.ToLower().Contains(filtro) ||
+                    a.ApellidosArtista.ToLower().Contains(filtro))
+                .ToListAsync();
         }
 
         // POST: api/artistas

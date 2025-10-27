@@ -27,10 +27,34 @@ namespace GestionObrasArte.API.Controllers
 
             if (!string.IsNullOrWhiteSpace(titulo))
             {
-                query = query.Where(p => p.TituloPintura.Contains(titulo));
+                string filtro = titulo.ToLower();
+
+                query = query.Where(p => p.TituloPintura.ToLower().Contains(filtro));
             }
 
             return await query.ToListAsync();
+        }
+
+
+        // GET: api/artistas
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Artista>>> GetArtistas([FromQuery] string? nombre)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                return await _context.Artistas.ToListAsync();
+            }
+
+            string filtro = nombre.ToLower();
+
+            return await _context.Artistas
+                .Where(a =>
+                    a.NombreArtista.ToLower().Contains(filtro) ||
+                    a.ApellidosArtista.ToLower().Contains(filtro))
+                .ToListAsync();
+
+
+
         }
 
         // POST: api/pinturas

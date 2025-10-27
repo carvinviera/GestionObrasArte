@@ -24,8 +24,10 @@ namespace GestionObrasArte.API.Controllers
             {
                 return await _context.TiposPintura.ToListAsync();
             }
+
+            string filtro = titulo.ToLower();
             return await _context.TiposPintura
-                                 .Where(t => t.TítuloTipoPintura.Contains(titulo))
+                                 .Where(t => t.TítuloTipoPintura.ToLower().Contains(filtro))
                                  .ToListAsync();
         }
 
