@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:GestionObrasArte.MauiApp.ViewModels"
+             xmlns:models="clr-namespace:GestionObrasArte.Shared.Models;assembly=GestionObrasArte.Shared"
+             x:DataType="viewmodels:PinturasListViewModel"
+             x:Class="GestionObrasArte.MauiApp.Views.PinturasListPage"
+             Title="Gestión de Pinturas">
+
+    <Grid RowDefinitions="Auto, Auto, *">
+
+        <HorizontalStackLayout Grid.Row="0" Padding="10">
+            <Button Text="Añadir Nueva" Command="{Binding GoToDetailCommand}" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" WidthRequest="30" HeightRequest="30" Margin="10,0" />
+        </HorizontalStackLayout>
+
+        <SearchBar Grid.Row="1" 
+                   Placeholder="Filtrar por título..." 
+                   Text="{Binding FiltroTitulo}"
+                   SearchCommand="{Binding LoadPinturasCommand}" />
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Pinturas}" SelectionMode="None">
+
+            <CollectionView.Header>
+                <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding LoadPinturasCommand}" />
+            </CollectionView.Header>
+
+            <CollectionView.EmptyView>
+                <Label Text="No hay pinturas." HorizontalOptions="Center" VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Pintura">
+                    <Frame Padding="10" Margin="10" CornerRadius="5" BorderColor="LightGray">
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding TituloPintura}" FontAttributes="Bold" FontSize="18" />
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding Artista.NombreArtista, StringFormat='Artista: {0}'}" FontSize="14" />
+                            <Label Grid.Row="2" Grid.Column="0" Text="{Binding Precio, StringFormat='Precio: {0:C}'}" FontSize="14" />
+
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalOptions="Center" Spacing="5">
+                                <Button Text="Editar" 
+                                        FontSize="12"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PinturasListViewModel}}, Path=GoToDetailCommand}"
+                                        CommandParameter="{Binding .}" />
+                                <Button Text="Eliminar"
+                                        FontSize="12"
+                                        BackgroundColor="Red"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PinturasListViewModel}}, Path=DeletePinturaCommand}"
+                                        CommandParameter="{Binding IdPintura}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

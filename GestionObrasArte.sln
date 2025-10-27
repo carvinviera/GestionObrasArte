@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.ConsoleApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.BlazorApp", "GestionObrasArte.BlazorApp\GestionObrasArte.BlazorApp.csproj", "{11111D66-2775-4C1B-895F-3B368B85CD64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.MauiApp", "GestionObrasArte.MauiApp\GestionObrasArte.MauiApp.csproj", "{A425D843-49E1-4ED1-8919-F2FA8744DD70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{11111D66-2775-4C1B-895F-3B368B85CD64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11111D66-2775-4C1B-895F-3B368B85CD64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11111D66-2775-4C1B-895F-3B368B85CD64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

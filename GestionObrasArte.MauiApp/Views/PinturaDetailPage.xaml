@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionObrasArte.MauiApp.Views.PinturaDetailPage"
+             xmlns:viewmodels="clr-namespace:GestionObrasArte.MauiApp.ViewModels"
+             x:DataType="viewmodels:PinturaDetailViewModel"
+             Title="{Binding PageTitle}">
+
+    <VerticalStackLayout Spacing="10" Padding="20">
+
+        <Label Text="Título de la Pintura" FontAttributes="Bold" />
+        <Entry Text="{Binding Pintura.TituloPintura}" Placeholder="Ej: La persistencia de la memoria" />
+
+        <Label Text="Precio" FontAttributes="Bold" />
+        <Entry Text="{Binding Pintura.Precio}" Keyboard="Numeric" Placeholder="Ej: 15000.00" />
+
+        <Label Text="Artista" FontAttributes="Bold" />
+        <Picker 
+            Title="Seleccione un artista..."
+            ItemsSource="{Binding Artistas}"
+            ItemDisplayBinding="{Binding NombreCompleto}"
+            SelectedItem="{Binding SelectedArtista}" />
+
+        <Label Text="Tipo de Pintura" FontAttributes="Bold" />
+        <Picker 
+            Title="Seleccione el tipo de pintura..."
+            ItemsSource="{Binding TiposPintura}"
+            ItemDisplayBinding="{Binding TítuloTipoPintura}"
+            SelectedItem="{Binding SelectedTipoPintura}" />
+
+        <Grid ColumnDefinitions="*,*">
+            <Button Grid.Column="0" Text="Guardar" Command="{Binding SavePinturaCommand}" Margin="5, 20" />
+            <Button Grid.Column="1" Text="Cancelar" Command="{Binding CancelCommand}" BackgroundColor="Gray" Margin="5, 20" />
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

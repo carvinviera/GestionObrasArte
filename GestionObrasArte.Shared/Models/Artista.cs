@@ -19,5 +19,6 @@ namespace GestionObrasArte.Shared.Models
 
         [Range(1, 2025, ErrorMessage = "El año de nacimiento no es válido")]
         public int AñoNacimientoArtista { get; set; }
+        public string NombreCompleto => $"{NombreArtista} {ApellidosArtista}"; 
     }
 }
