@@ -7,13 +7,13 @@ Console.WriteLine("--- Gestión de Tipos de Pintura ---");
 
 while (!salir)
 {
-    Console.WriteLine("\nSelecciona una opción:");
-    Console.WriteLine("1. Listar todos los tipos");
-    Console.WriteLine("2. Filtrar tipos por título");
-    Console.WriteLine("3. Agregar nuevo tipo");
-    Console.WriteLine("4. Modificar un tipo");
-    Console.WriteLine("5. Eliminar un tipo");
-    Console.WriteLine("6. Salir");
+    Console.WriteLine("\n");
+    Console.WriteLine(" ________________________________________________________________");
+    Console.WriteLine("|       Selecciona una opción:                                   |");
+    Console.WriteLine("| 1. Listar todos los tipos       2. Filtrar tipos por título    |");
+    Console.WriteLine("| 3. Agregar nuevo tipo           4. Modificar un tipo           |");
+    Console.WriteLine("| 5. Eliminar un tipo             6. Salir                       |");
+    Console.WriteLine(" ---------------------------------------------------------------- ");
     Console.Write("Opción: ");
 
     string? opcion = Console.ReadLine();

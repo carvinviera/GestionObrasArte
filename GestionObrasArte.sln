@@ -9,13 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.API", "Ges
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.ConsoleApp", "GestionObrasArte.ConsoleApp\GestionObrasArte.ConsoleApp.csproj", "{6FB5A78F-A5C6-4E74-B231-6C504A7BD2FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.BlazorApp", "GestionObrasArte.BlazorApp\GestionObrasArte.BlazorApp.csproj", "{11111D66-2775-4C1B-895F-3B368B85CD64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F7A0E1C6-EFDF-4643-B6AF-B93C825C4802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +29,12 @@ Global
 		{6FB5A78F-A5C6-4E74-B231-6C504A7BD2FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FB5A78F-A5C6-4E74-B231-6C504A7BD2FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FB5A78F-A5C6-4E74-B231-6C504A7BD2FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11111D66-2775-4C1B-895F-3B368B85CD64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11111D66-2775-4C1B-895F-3B368B85CD64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11111D66-2775-4C1B-895F-3B368B85CD64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11111D66-2775-4C1B-895F-3B368B85CD64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

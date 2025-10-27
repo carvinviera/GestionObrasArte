@@ -1,0 +1,140 @@
+﻿@page "/artistas"
+@using GestionObrasArte.Shared.Models
+@using System.Net.Http.Json
+@inject HttpClient Http
+@rendermode InteractiveServer
+
+<PageTitle>Gestión de Artistas</PageTitle>
+
+<h1>Gestión de Artistas</h1>
+
+<h3>@(_artistaSeleccionado.IdArtista == 0 ? "Nuevo Artista" : "Editar Artista")</h3>
+<EditForm Model="@_artistaSeleccionado" OnValidSubmit="GuardarArtista">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>Nombre:</label>
+        <InputText @bind-Value="_artistaSeleccionado.NombreArtista" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Apellidos:</label>
+        <InputText @bind-Value="_artistaSeleccionado.ApellidosArtista" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Año Nacimiento:</label>
+        <InputNumber @bind-Value="_artistaSeleccionado.AñoNacimientoArtista" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" @onclick="LimpiarFormulario">Cancelar</button>
+</EditForm>
+
+<hr />
+
+<div class="mb-3">
+    <label>Filtrar por nombre:</label>
+    <input @bind="_filtroNombre" @oninput="AplicarFiltro" class="form-control" placeholder="Escribe para filtrar..." />
+</div>
+
+<h3>Listado de Artistas</h3>
+@if (_artistas == null)
+{
+    <p>Cargando artistas...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Año Nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var artista in _artistas)
+            {
+                <tr>
+                    <td>@artista.IdArtista</td>
+                    <td>@artista.NombreArtista</td>
+                    <td>@artista.ApellidosArtista</td>
+                    <td>@artista.AñoNacimientoArtista</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" @onclick="() => SeleccionarParaEditar(artista)">Editar</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => EliminarArtista(artista.IdArtista)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private List<Artista>? _artistas;
+    private Artista _artistaSeleccionado = new();
+    private string _filtroNombre = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarArtistas();
+    }
+
+    private async Task CargarArtistas(string? filtro = null)
+    {
+        var url = "artistas";
+        if (!string.IsNullOrWhiteSpace(filtro))
+        {
+            url += $"?nombre={filtro}";
+        }
+        _artistas = await Http.GetFromJsonAsync<List<Artista>>(url);
+    }
+
+    private async void AplicarFiltro(ChangeEventArgs e)
+    {
+        _filtroNombre = e.Value?.ToString() ?? string.Empty;
+        await CargarArtistas(_filtroNombre);
+        StateHasChanged(); // Forzar actualización de UI
+    }
+
+    private async Task GuardarArtista()
+    {
+        if (_artistaSeleccionado.IdArtista == 0) // Es nuevo
+        {
+            await Http.PostAsJsonAsync("artistas", _artistaSeleccionado);
+        }
+        else // Es edición
+        {
+            await Http.PutAsJsonAsync($"artistas/{_artistaSeleccionado.IdArtista}", _artistaSeleccionado);
+        }
+
+        LimpiarFormulario();
+        await CargarArtistas();
+    }
+
+    private void SeleccionarParaEditar(Artista artista)
+    {
+        // Clonar para evitar modificar la tabla directamente
+        _artistaSeleccionado = new Artista
+            {
+                IdArtista = artista.IdArtista,
+                NombreArtista = artista.NombreArtista,
+                ApellidosArtista = artista.ApellidosArtista,
+                AñoNacimientoArtista = artista.AñoNacimientoArtista
+            };
+    }
+
+    private async Task EliminarArtista(int id)
+    {
+        await Http.DeleteAsync($"artistas/{id}");
+        await CargarArtistas();
+    }
+
+    private void LimpiarFormulario()
+    {
+        _artistaSeleccionado = new();
+    }
+}

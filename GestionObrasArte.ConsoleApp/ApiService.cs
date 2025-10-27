@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Collections.Generic;
+using System.Net.Http.Json;
 using GestionObrasArte.Shared.Models;
 
 namespace GestionObrasArte.ConsoleApp
@@ -6,7 +7,7 @@ namespace GestionObrasArte.ConsoleApp
     public class ApiService
     {
         // IMPORTANTE: Ajusta esta URL a la que usa tu API
-        private const string ApiBaseUrl = "http://localhost:5123/api/tipospintura";
+        private const string ApiBaseUrl = "http://localhost:5103/api/tipospintura";
         private readonly HttpClient _httpClient = new HttpClient();
 
         public async Task ListarTiposPintura(string? titulo = null)
@@ -18,6 +19,7 @@ namespace GestionObrasArte.ConsoleApp
             }
 
             var tipos = await _httpClient.GetFromJsonAsync<List<TipoPintura>>(url);
+            Console.WriteLine(" ---------------------------------------------------------------- ");
             Console.WriteLine("\n--- Listado de Tipos de Pintura ---");
             if (tipos == null || tipos.Count == 0)
             {
@@ -32,7 +34,8 @@ namespace GestionObrasArte.ConsoleApp
 
         public async Task AgregarTipoPintura()
         {
-            Console.Write("Introduce el título del nuevo tipo: ");
+            Console.WriteLine(" ---------------------------------------------------------------- ");
+            Console.Write("\nIntroduce el título del nuevo tipo: ");
             string titulo = Console.ReadLine() ?? "";
             var nuevoTipo = new TipoPintura { TítuloTipoPintura = titulo };
 
@@ -49,7 +52,8 @@ namespace GestionObrasArte.ConsoleApp
 
         public async Task ModificarTipoPintura()
         {
-            Console.Write("Introduce el ID del tipo a modificar: ");
+            Console.WriteLine(" ---------------------------------------------------------------- ");
+            Console.Write("\nIntroduce el ID del tipo a modificar: ");
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
                 Console.WriteLine("ID no válido.");
@@ -74,7 +78,8 @@ namespace GestionObrasArte.ConsoleApp
 
         public async Task EliminarTipoPintura()
         {
-            Console.Write("Introduce el ID del tipo a eliminar: ");
+            Console.WriteLine(" ---------------------------------------------------------------- ");
+            Console.Write("\nIntroduce el ID del tipo a eliminar: ");
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
                 Console.WriteLine("ID no válido.");
