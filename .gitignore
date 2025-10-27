@@ -483,4 +483,4 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-!ObrasArte.db
+!GestionObrasArte.API/ObrasArte.db
