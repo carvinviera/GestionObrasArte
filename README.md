@@ -1,4 +1,4 @@
-# 🎨 Gestión de Obras de Arte
+# 🎨 <a href="https://github.com/carvinviera/GestionObrasArte/"> Gestión de Obras de Arte </a>
 
 > **Sistema integral para la administración y registro de obras de arte, artistas y tipos de pintura**, desarrollado con una arquitectura modular en .NET 9.
 
@@ -15,14 +15,28 @@ Se observa una estructura de solución (`.sln`) que contiene **cinco proyectos p
   Proyecto **Backend (API REST)** desarrollado en **.NET 9**.  
   Actúa como el servidor central, manejando la lógica de negocio y la comunicación con la base de datos.
 
+  <img src="./GestionObrasArte.Shared/img/ApiTestConSwagger.png">
+
+  Con pruebas de las mismas usando swagger
+
 - **`GestionObrasArte.BlazorApp`**  
   Proyecto **Frontend (Cliente Web)** basado en **Blazor Server**, diseñado para la gestión interactiva de la entidad **Artistas**.
+
+  <img src="./GestionObrasArte.Shared/img/ProyectoBlazor1.png">
+
+  <img src="./GestionObrasArte.Shared/img/ProyectoBlazor2.png">
 
 - **`GestionObrasArte.ConsoleApp`**  
   Proyecto **Cliente de Consola**, enfocado en las operaciones **CRUD** de la entidad **Tipos de Pintura**.
 
+  <img src="./GestionObrasArte.Shared/img/ProyectoConsola.png">
+
 - **`GestionObrasArte.MauiApp`**  
   Proyecto **Cliente Multiplataforma (.NET MAUI)**, orientado a la gestión de **Pinturas** para **dispositivos móviles y de escritorio**.
+
+  <img src="./GestionObrasArte.Shared/img/ProyectoMaui1.png">
+
+  <img src="./GestionObrasArte.Shared/img/ProyectoMaui2.png">
 
 - **`GestionObrasArte.Shared`**  
   Biblioteca de clases **compartida**, que contiene los **modelos de datos (DTOs/Entidades)** utilizados por la API y los proyectos cliente, garantizando la **consistencia de datos** en toda la solución.

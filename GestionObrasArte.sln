@@ -8,10 +8,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.API", "GestionObrasArte.API\GestionObrasArte.API.csproj", "{D361C727-5FC1-44B6-ADA3-0D81C7B37A86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.ConsoleApp", "GestionObrasArte.ConsoleApp\GestionObrasArte.ConsoleApp.csproj", "{6FB5A78F-A5C6-4E74-B231-6C504A7BD2FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D361C727-5FC1-44B6-ADA3-0D81C7B37A86} = {D361C727-5FC1-44B6-ADA3-0D81C7B37A86}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.BlazorApp", "GestionObrasArte.BlazorApp\GestionObrasArte.BlazorApp.csproj", "{11111D66-2775-4C1B-895F-3B368B85CD64}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D361C727-5FC1-44B6-ADA3-0D81C7B37A86} = {D361C727-5FC1-44B6-ADA3-0D81C7B37A86}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionObrasArte.MauiApp", "GestionObrasArte.MauiApp\GestionObrasArte.MauiApp.csproj", "{A425D843-49E1-4ED1-8919-F2FA8744DD70}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D361C727-5FC1-44B6-ADA3-0D81C7B37A86} = {D361C727-5FC1-44B6-ADA3-0D81C7B37A86}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +46,7 @@ Global
 		{11111D66-2775-4C1B-895F-3B368B85CD64}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A425D843-49E1-4ED1-8919-F2FA8744DD70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
