@@ -6,8 +6,10 @@
 
 ## 🧱 Arquitectura del Proyecto
 
+<img src="./GestionObrasArte.Shared/img/EstructuraCarpetas.png">
+
 La captura de pantalla muestra la arquitectura de la solución del proyecto **"Gestión de Obras de Arte"** en Visual Studio.  
-Se observa una estructura de solución (`.sln`) que contiene **cinco proyectos principales**, demostrando un enfoque de **separación de responsabilidades (SoC)** y una **arquitectura orientada a servicios**:
+Se observa una estructura de solución (`.sln`) que contiene **cinco proyectos principales**, demostrando un enfoque de **separación de responsabilidades (SoC)** y una **arquitectura orientada a servicios** donde cada proyecto tiene su httpCliente para comunicación con backend:
 
 - **`GestionObrasArte.API`**  
   Proyecto **Backend (API REST)** desarrollado en **.NET 9**.  
